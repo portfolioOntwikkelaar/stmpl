@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>stmp</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Design Awards Animation</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="box">
-    <div id="pixel"></div>
+  <div class="container">
+    <div id="grid"></div>
   </div>
-  <script>
-    let w = 30;
-    let h = 30;
 
-    function pixel(){
-      for(var i = 0; i<h; i++) {
-        for(var j = 0; j < w; j++) {
-          let span = document.createElement('span');
-          let random = Math.random() * 13;
-          let randomFixed = random.toFixed(14)
-          document.getElementById('pixel').appendChild(span);
-          span.style.left = j * 21 + 'px';
-          span.style.top = i * 21 + 'px';
-          span.style.backgroundPosition = -j * 21  + 'px' + -i*21 + 'px, center' ;
-          span.style.animationDelay = randomFixed + 's';
+  <script>
+    const cols = 40;
+    const rows = 40;
+    const grid = document.getElementById('grid');
+
+    function createPixels() {
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const span = document.createElement('span');
+          span.classList.add('pixel');
+          span.style.setProperty('--x', x);
+          span.style.setProperty('--y', y);
+          span.style.animationDelay = (Math.random() * 10).toFixed(2) + 's';
+          grid.appendChild(span);
         }
       }
     }
-    pixel();
+
+    createPixels();
   </script>
 </body>
 </html>
